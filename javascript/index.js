@@ -41,7 +41,7 @@ getInstruction("mashedPotatoes", 0, (step) => {
           document.querySelector("#mashedPotatoes").innerHTML += `<li>${step}</li>`
           getInstruction("mashedPotatoes", 0, () => {
             document.querySelector("#mashedPotatoes").innerHTML += `<li>Smashed potatoes are ready!</li>`
-
+            document.getElementById("mashedPotatoesImg").style.display = "block";
           }, (error) => console.log(error))
         }, (error) => console.log(error))
       }, (error) => console.log(error))
@@ -51,74 +51,95 @@ getInstruction("mashedPotatoes", 0, (step) => {
 
 // Iteration 2 - using promises
 
-function addStep(step) {
-  document.querySelector("#steak").innerHTML += `<li>${step}</li>`
+function addStep(selector, step) {
+  document.querySelector(`#${selector}`).innerHTML += `<li>${step}</li>`
 }
 
 
 obtainInstruction('steak', 0)
   .then((step) => {
-    addStep(step)
-    return obtainInstruction('steak',1)
+    addStep('steak', step)
+    return obtainInstruction('steak', 1)
   })
   .then((step) => {
-    addStep(step)
-    return obtainInstruction('steak',2)
+    addStep('steak', step)
+    return obtainInstruction('steak', 2)
   })
   .then((step) => {
-    addStep(step)
-    return obtainInstruction('steak',3)
+    addStep('steak', step)
+    return obtainInstruction('steak', 3)
   })
   .then((step) => {
-    addStep(step)
-    return obtainInstruction('steak',4)
+    addStep('steak', step)
+    return obtainInstruction('steak', 4)
   })
   .then((step) => {
-    addStep(step)
-    return obtainInstruction('steak',5)
+    addStep('steak', step)
+    return obtainInstruction('steak', 5)
   })
   .then((step) => {
-    addStep(step)
-    return obtainInstruction('steak',6)
+    addStep('steak', step)
+    return obtainInstruction('steak', 6)
   })
   .then((step) => {
-    addStep(step)
-    return obtainInstruction('steak',7)
+    addStep('steak', step)
+    return obtainInstruction('steak', 7)
   })
   .then((step) => {
-    addStep(step)
+    addStep('steak', step)
   })
   .then(() => {
-    addStep("Steak is ready",0)
+    addStep("steak", "Steak is ready")
+    document.getElementById("steakImg").style.display = "block";
   })
-    
-    
-  //   obtainInstruction('steak', 1)
-  //     .then((step) => {
-  //       addStep(step)
-  //       obtainInstruction('steak', 2)
-  //         .then((step) => {
-  //           addStep(step)
-  //           obtainInstruction('steak', 3)
-  //             .then((step) => {
-  //               addStep(step)
-  //               obtainInstruction('steak', 4)
-  //                 .then((step) => {
-  //                   addStep(step)
-  //                   obtainInstruction('steak', 5)
-  //                     .then((step) => {
-  //                       addStep(step)
-  //                       obtainInstruction('steak', 5)
-  //                     })
-  //                 })
-  //             })
-  //         })
-  //     })
-  // })
+
 
 
 // Iteration 3 using async/await
-// ...
+async function makeBroccoli() {
+  for (let i = 0; i < broccoli.length; i++) {
+    await obtainInstruction('broccoli', i)
+    .then((step) => {
+      addStep('broccoli', step)
+    })
+  }
+  addStep("broccoli", "Brocoli is ready")
+  document.getElementById("broccoliImg").style.display = "block";
+
+  // await obtainInstruction('broccoli', 1)
+  //   .then((step) => {
+  //     addStep('broccoli', step)
+  //   })
+  // await obtainInstruction('broccoli', 2)
+  //   .then((step) => {
+  //     addStep('broccoli', step)
+  //   })
+  // await obtainInstruction('broccoli', 3)
+  //   .then((step) => {
+  //     addStep('broccoli', step)
+  //   })
+  // await obtainInstruction('broccoli', 4)
+  //   .then((step) => {
+  //     addStep('broccoli', step)
+  //   })
+  // await obtainInstruction('broccoli', 5)
+  //   .then((step) => {
+  //     addStep('broccoli', step)
+  //   })
+  // await obtainInstruction('broccoli', 6)
+  //   .then((step) => {
+  //     addStep('broccoli', step)
+  //   })
+  //   .then(() => {
+  //     addStep("broccoli", "Brocoli is ready")
+  //     document.getElementById("broccoliImg").style.display = "block";
+  //   })
+
+}
+
+makeBroccoli()
 
 // Bonus 2 - Promise all
+
+Promise.all()
 // ...
