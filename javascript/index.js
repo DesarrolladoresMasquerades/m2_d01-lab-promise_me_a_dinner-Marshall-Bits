@@ -55,7 +55,6 @@ function addStep(selector, step) {
   document.querySelector(`#${selector}`).innerHTML += `<li>${step}</li>`
 }
 
-
 obtainInstruction('steak', 0)
   .then((step) => {
     addStep('steak', step)
@@ -88,7 +87,8 @@ obtainInstruction('steak', 0)
   .then((step) => {
     addStep('steak', step)
   })
-  .then(() => {
+  .catch((err)=>console.log(err))
+  .finally(() => {
     addStep("steak", "Steak is ready")
     document.getElementById("steakImg").style.display = "block";
   })
@@ -96,50 +96,35 @@ obtainInstruction('steak', 0)
 
 
 // Iteration 3 using async/await
+
 async function makeBroccoli() {
   for (let i = 0; i < broccoli.length; i++) {
     await obtainInstruction('broccoli', i)
-    .then((step) => {
-      addStep('broccoli', step)
-    })
+      .then((step) => {
+        addStep('broccoli', step)
+      })
   }
   addStep("broccoli", "Brocoli is ready")
   document.getElementById("broccoliImg").style.display = "block";
-
-  // await obtainInstruction('broccoli', 1)
-  //   .then((step) => {
-  //     addStep('broccoli', step)
-  //   })
-  // await obtainInstruction('broccoli', 2)
-  //   .then((step) => {
-  //     addStep('broccoli', step)
-  //   })
-  // await obtainInstruction('broccoli', 3)
-  //   .then((step) => {
-  //     addStep('broccoli', step)
-  //   })
-  // await obtainInstruction('broccoli', 4)
-  //   .then((step) => {
-  //     addStep('broccoli', step)
-  //   })
-  // await obtainInstruction('broccoli', 5)
-  //   .then((step) => {
-  //     addStep('broccoli', step)
-  //   })
-  // await obtainInstruction('broccoli', 6)
-  //   .then((step) => {
-  //     addStep('broccoli', step)
-  //   })
-  //   .then(() => {
-  //     addStep("broccoli", "Brocoli is ready")
-  //     document.getElementById("broccoliImg").style.display = "block";
-  //   })
-
 }
 
 makeBroccoli()
 
 // Bonus 2 - Promise all
+const promiseArray = []
 
-Promise.all()
+for (let i = 0; i < brusselsSprouts.length; i++) {
+  promiseArray.push(obtainInstruction("brusselsSprouts", i))
+}
+
+Promise.all(promiseArray)
+  .then((stepsArray) => stepsArray.forEach((step) => {
+    addStep('brusselsSprouts', step)
+  }))
+  .catch((err)=>console.log(err))
+  .finally(() => {
+    addStep('brusselsSprouts', "Brussels Sprouts are ready!")
+    document.getElementById("brusselsSproutsImg").style.display = "block"
+  }
+  )
 // ...
