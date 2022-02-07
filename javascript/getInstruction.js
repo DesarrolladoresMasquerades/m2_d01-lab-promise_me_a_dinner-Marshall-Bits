@@ -9,7 +9,7 @@ function getInstruction(food, step, callback, errorCallback) {
 
       if (food === "mashedPotatoes") {
         instruction = mashedPotatoes[step];
-      }
+      } 
       else if (food === "steak") {
         instruction = steak[step];
       }

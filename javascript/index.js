@@ -4,34 +4,118 @@
 // 🚨🚨🚨 Comment out the below code before you start working on the code
 
 // Out of sync
-  getInstruction("mashedPotatoes", 0, (step1) => {
-    document.querySelector("#mashedPotatoes").innerHTML += `<li>${step1}</li>`;
-  }, (error) => console.log(error));
-  
-  getInstruction("mashedPotatoes", 1, (step2) => {
-    document.querySelector("#mashedPotatoes").innerHTML += `<li>${step2}</li>`;
-  }, (error) => console.log(error));
-  
-  getInstruction("mashedPotatoes", 2, (step3) => {
-    document.querySelector("#mashedPotatoes").innerHTML += `<li>${step3}</li>`;
-  }, (error) => console.log(error));
-  
-  getInstruction("mashedPotatoes", 3, (step4) => {
-    document.querySelector("#mashedPotatoes").innerHTML += `<li>${step4}</li>`;
-  }, (error) => console.log(error));
-  
-  getInstruction("mashedPotatoes", 4, (step5) => {
-    document.querySelector("#mashedPotatoes").innerHTML += `<li>${step5}</li>`;
-    document.querySelector("#mashedPotatoesImg").removeAttribute("hidden");
-  }, (error) => console.log(error));
+// getInstruction("mashedPotatoes", 0, (step1) => {
+//   document.querySelector("#mashedPotatoes").innerHTML += `<li>${step1}</li>`;
+// }, (error) => console.log(error));
+
+// getInstruction("mashedPotatoes", 1, (step2) => {
+//   document.querySelector("#mashedPotatoes").innerHTML += `<li>${step2}</li>`;
+// }, (error) => console.log(error));
+
+// getInstruction("mashedPotatoes", 2, (step3) => {
+//   document.querySelector("#mashedPotatoes").innerHTML += `<li>${step3}</li>`;
+// }, (error) => console.log(error));
+
+// getInstruction("mashedPotatoes", 3, (step4) => {
+//   document.querySelector("#mashedPotatoes").innerHTML += `<li>${step4}</li>`;
+// }, (error) => console.log(error));
+
+// getInstruction("mashedPotatoes", 4, (step5) => {
+//   document.querySelector("#mashedPotatoes").innerHTML += `<li>${step5}</li>`;
+//   document.querySelector("#mashedPotatoesImg").removeAttribute("hidden");
+// }, (error) => console.log(error));
 
 
 
 // Iteration 1 - using callbacks
-// ...
+
+getInstruction("mashedPotatoes", 0, (step) => {
+  document.querySelector("#mashedPotatoes").innerHTML += `<li>${step}</li>`
+  getInstruction("mashedPotatoes", 1, (step) => {
+    document.querySelector("#mashedPotatoes").innerHTML += `<li>${step}</li>`
+    getInstruction("mashedPotatoes", 2, (step) => {
+      document.querySelector("#mashedPotatoes").innerHTML += `<li>${step}</li>`
+      getInstruction("mashedPotatoes", 3, (step) => {
+        document.querySelector("#mashedPotatoes").innerHTML += `<li>${step}</li>`
+        getInstruction("mashedPotatoes", 4, (step) => {
+          document.querySelector("#mashedPotatoes").innerHTML += `<li>${step}</li>`
+          getInstruction("mashedPotatoes", 0, () => {
+            document.querySelector("#mashedPotatoes").innerHTML += `<li>Smashed potatoes are ready!</li>`
+
+          }, (error) => console.log(error))
+        }, (error) => console.log(error))
+      }, (error) => console.log(error))
+    }, (error) => console.log(error))
+  }, (error) => console.log(error))
+}, (error) => console.log(error))
 
 // Iteration 2 - using promises
-// ...
+
+function addStep(step) {
+  document.querySelector("#steak").innerHTML += `<li>${step}</li>`
+}
+
+
+obtainInstruction('steak', 0)
+  .then((step) => {
+    addStep(step)
+    return obtainInstruction('steak',1)
+  })
+  .then((step) => {
+    addStep(step)
+    return obtainInstruction('steak',2)
+  })
+  .then((step) => {
+    addStep(step)
+    return obtainInstruction('steak',3)
+  })
+  .then((step) => {
+    addStep(step)
+    return obtainInstruction('steak',4)
+  })
+  .then((step) => {
+    addStep(step)
+    return obtainInstruction('steak',5)
+  })
+  .then((step) => {
+    addStep(step)
+    return obtainInstruction('steak',6)
+  })
+  .then((step) => {
+    addStep(step)
+    return obtainInstruction('steak',7)
+  })
+  .then((step) => {
+    addStep(step)
+  })
+  .then(() => {
+    addStep("Steak is ready",0)
+  })
+    
+    
+  //   obtainInstruction('steak', 1)
+  //     .then((step) => {
+  //       addStep(step)
+  //       obtainInstruction('steak', 2)
+  //         .then((step) => {
+  //           addStep(step)
+  //           obtainInstruction('steak', 3)
+  //             .then((step) => {
+  //               addStep(step)
+  //               obtainInstruction('steak', 4)
+  //                 .then((step) => {
+  //                   addStep(step)
+  //                   obtainInstruction('steak', 5)
+  //                     .then((step) => {
+  //                       addStep(step)
+  //                       obtainInstruction('steak', 5)
+  //                     })
+  //                 })
+  //             })
+  //         })
+  //     })
+  // })
+
 
 // Iteration 3 using async/await
 // ...
