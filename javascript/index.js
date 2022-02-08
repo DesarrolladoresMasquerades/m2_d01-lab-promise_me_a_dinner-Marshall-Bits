@@ -98,11 +98,13 @@ obtainInstruction('steak', 0)
 // Iteration 3 using async/await
 
 async function makeBroccoli() {
-  for (let i = 0; i < broccoli.length; i++) {
+  try{for (let i = 0; i < broccoli.length; i++) {
     await obtainInstruction('broccoli', i)
       .then((step) => {
         addStep('broccoli', step)
       })
+  }}catch(error){
+    console.log(error);
   }
   addStep("broccoli", "Brocoli is ready")
   document.getElementById("broccoliImg").style.display = "block";
